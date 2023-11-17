@@ -1,0 +1,50 @@
+{% extends 'AdminInterface/base.html' %}
+
+
+{% block content %} 
+
+
+
+
+
+<div class="p-4 sm:ml-64">
+    <div class="p-4 border-2 border-gray-200 h-screen border-dashed rounded-lg dark:border-gray-700 ">
+
+        <div class="flex mb-1">
+            <div class="w-full bg-gray-500 h-12"></div>
+          </div>
+
+          <div class="flex mb-4">
+            <div class="w-1/4 bg-gray-500 h-12"></div>
+            <div class="w-1/2 bg-gray-600 h-12"></div>
+            <div class="w-1/4 bg-gray-700 h-12"></div>
+          </div>
+
+          <div overflow-x-auto>
+            <div class="flex ">
+              <div class="w-1/2  mr-2 h-12">Course</div>
+              <div class="w-1/5 h-12">Prelim</div>
+              <div class="w-1/5  h-12">Midterm</div>
+              <div class="w-1/5  h-12">Finals</div>
+              
+            
+            </div>
+  
+            {% for grade in grades %}
+  
+            <div class="flex ">
+              <div class="w-1/2 mr-2 h-12">{{grade.course.course_name}}</div>
+              <div class="w-1/5  h-12">{{grade.prelim}}</div>
+              <div class="w-1/5 h-12">{{grade.midterm}}</div>
+              <div class="w-1/5  h-12">{{grade.finals}}</div>
+            
+            </div>
+  
+            {% endfor %}
+         
+          </div>
+         
+          
+    </div>
+  </div>
+{% endblock content %}

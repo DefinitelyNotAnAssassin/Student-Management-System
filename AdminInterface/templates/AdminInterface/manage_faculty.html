@@ -1,0 +1,50 @@
+{% extends 'AdminInterface/base.html' %}
+
+
+{% block content %} 
+
+
+
+
+
+<div class="p-4 sm:ml-64">
+    <div class="p-4 border-2 border-gray-200 h-screen border-dashed rounded-lg dark:border-gray-700 ">
+
+        <div class="flex mb-1">
+            <div class="w-full bg-gray-500 h-12"></div>
+          </div>
+
+          <div class="flex mb-4">
+            <div class="w-1/4 bg-gray-500 h-12"></div>
+            <div class="w-1/2 bg-gray-600 h-12"></div>
+            <div class="w-1/4 bg-gray-700 h-12"></div>
+          </div>
+
+         <table class="table-auto border-collapse w-full overflow-x-auto text-left">
+            <thead>
+                <tr>
+                    <th class="border-b dark:border-slate-600">Faculty Number</th>
+                    <th class="border-b dark:border-slate-600">Firstname</th>
+                    <th class="border-b dark:border-slate-600">Lastname</th>
+                
+                </tr>
+            </thead>
+            <tbody>
+                {% for faculty in faculties %} 
+                <tr class=" hover:ring-4 h-20">
+                    <td class="border-b dark:border-slate-600">{{faculty.faculty_number}}</td>
+                    <td class="border-b dark:border-slate-600">{{faculty.account.first_name}}</td>
+                    <td class="border-b dark:border-slate-600">{{faculty.account.last_name}}</td>
+                  
+                </tr>
+
+                {% endfor %}
+            </tbody>
+         </table>
+          
+
+
+         
+    </div>
+  </div>
+{% endblock content %}

@@ -1,0 +1,28 @@
+
+<div id="modal" _="on closeModal add .closing then wait for animationend then remove me">
+	<div class="modal-underlay" _="on click trigger closeModal"></div>
+	<div class="modal-content">
+        <form  hx-post = '/api/add_student' hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'   hx-target = 'body'>  
+
+                <label for = 'username'> Username </label>
+                <input autocomplete = 'off' class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type = 'text' name = 'username'  />
+
+
+                <label for = 'password'> Password </label>
+                <input autocomplete = 'off' class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type = 'password' name = 'password'  />
+                <label for = 'student_number'> Student Number </label>
+                <input autocomplete = 'off' class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type = 'text' name = 'student_number'  />
+                <label for = 'first_name'> First Name </label>
+                <input autocomplete = 'off' class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type = 'text' name = 'first_name'  />
+                <label for = 'last_name'> Last Name </label>
+                <input autocomplete = 'off' class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type = 'text' name = 'last_name'  />
+                <label for = 'address'> Address </label>
+                <input autocomplete = 'off' class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type = 'text' name = 'address'  />
+            
+
+        
+		<button _="on click trigger closeModal" class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" type = 'submit' > Save </button>
+		<a _="on click trigger closeModal" class="bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded"> Close </a>
+        </form>
+	</div>
+</div>

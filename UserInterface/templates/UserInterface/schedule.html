@@ -1,0 +1,66 @@
+{% extends 'UserInterface/base.html' %}
+
+
+{% block content %} 
+
+
+
+
+
+<div class="p-4 sm:ml-64">
+    <div class="p-4 border-2 border-gray-200 h-screen border-dashed rounded-lg dark:border-gray-700 ">
+
+        <div class="flex mb-1">
+            <div class="w-full bg-gray-500 h-12"></div>
+          </div>
+
+          <div class="flex mb-4">
+            <div class="w-1/4 bg-gray-500 h-12"></div>
+            <div class="w-1/2 bg-gray-600 h-12"></div>
+            <div class="w-1/4 bg-gray-700 h-12"></div>
+          </div>
+
+          <div overflow-x-auto>
+            <div class="flex ">
+              <div class="w-1/2  mr-2 h-12">Course</div>
+              <div class="w-1/5 h-12">Day</div>
+              <div class="w-1/5  h-12">Time</div>
+          
+              
+            
+            </div>
+  
+            {% for schedule in schedules %}
+  
+            <div class="flex ">
+              <div class="w-1/2 mr-2 h-12">{{schedule.course_name}}</div>
+                
+
+              <div class="w-1/5  h-12">
+                {% for weekday in schedule.course_schedule.schedule_slots.all %}
+                
+                {{weekday.weekday}},
+
+
+                {% endfor %}
+            </div>
+
+            <div class="w-1/5 h-12">
+            {% for time in schedule.course_schedule.schedule_slots.all %}
+         
+                {{time.start_time}} - {{time.end_time}}, 
+
+                {% endfor %}
+              </div>
+          
+            
+            </div>
+  
+            {% endfor %}
+         
+          </div>
+         
+          
+    </div>
+  </div>
+{% endblock content %}

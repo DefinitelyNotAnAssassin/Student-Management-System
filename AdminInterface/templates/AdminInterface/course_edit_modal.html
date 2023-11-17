@@ -1,0 +1,62 @@
+
+<div id="modal" _="on closeModal add .closing then wait for animationend then remove me">
+	<div class="modal-underlay" _="on click trigger closeModal"></div>
+	<div class="modal-content">
+        <form  hx-post = '/api/edit_course' hx-target = 'body'>  
+    
+	{% for component in form %}
+			{{component.label}}
+			<br>
+			{{component}}
+			<br>
+
+	{% endfor %}
+
+
+
+	<label for="students">Add Students</label>
+	<br>
+	<select name="students" multiple id="students" style="width: 100%;">
+	
+	</select>
+	<br>
+        <input type="hidden" value = '{{id}}' id = 'id' name="id">
+		<button _="on click trigger closeModal"  class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" type = 'submit' > Save </button>
+		<a _="on click trigger closeModal" class="bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded"> Close </a>
+    </form>
+	</div>
+</div>
+
+
+<script>
+	$("#students").select2({
+		ajax: {
+			url: "/api/filter_students",
+			dataType: 'json',
+			headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+			delay: 450,
+			type: 'GET',
+			data: function (params) {
+				return {
+					id: $('#id').val(),
+					q: params.term, // search term
+				};
+			},
+			processResults: function (data) {
+				var arr = []
+				$.each(data, function (index, value) {
+					arr.push({
+						id: index,
+						text: value
+					})
+				})
+				return {
+					results: arr
+				};
+			},
+			cache: true
+		},
+		escapeMarkup: function (markup) { return markup; },
+		minimumInputLength: 1
+	});
+</script>
