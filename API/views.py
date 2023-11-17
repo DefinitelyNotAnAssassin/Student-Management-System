@@ -108,9 +108,12 @@ def edit_course(request):
             s = get_object_or_404(Student, student_number = student)
             if not check_enrolled(s, c):
                 c.students.add(s)
+                g = Grade(student = s, course = c)
+                g.save()
+
                 print("Student Added")
         c.save()
-        return redirect('manage courses')
+        return redirect(f'/lmsadmin/manage_courses/?semester={c.semester}&academic_year={c.academic_year}')
     
 
 @csrf_exempt

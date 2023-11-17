@@ -5,6 +5,8 @@ from Accounts.models import *
 from Registrar.models import * 
 from Accounting.models import * 
 from uuid import uuid4
+from AdminInterface.forms import SelectCourseForm 
+from django.db.models import Q
 # Create your views here.
 
 
@@ -53,15 +55,22 @@ def manage_faculty(request):
 @login_required
 def manage_courses(request):
     if request.method == 'GET':
-        return render(request, 'AdminInterface/manage_courses.html', )
+        try:
+            sem = request.GET['semester']
+            ay = request.GET['academic_year']
+            c = Course.objects.filter(semester=sem, academic_year = ay)
+        except:
+            c = []
+            pass
     
-    elif request.method == 'POST':
-        c = Course.objects.filter(semester = request.POST['semester'])
+
         items = {
+            'form': SelectCourseForm(),
             'courses': c,
         }
-        print(c)
-        return render (request, 'AdminInterface/course_table.html', context = items)
+        return render(request, 'AdminInterface/manage_courses.html', context=items)
+    
+ 
 
 
 @login_required

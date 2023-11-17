@@ -3,7 +3,7 @@
 
 {% block content %} 
 
-
+{% load adminfilters %}
 
 
 
@@ -40,6 +40,9 @@
                     <th class="border-b dark:border-slate-600">Student Number</th>
                     <th class="border-b dark:border-slate-600">Firstname</th>
                     <th class="border-b dark:border-slate-600">Lastname</th>
+                    <th class="border-b dark:border-slate-600">Prelim</th>
+                    <th class="border-b dark:border-slate-600">Midterm</th>
+                    <th class="border-b dark:border-slate-600">Finals</th>
 
            
                 </tr>
@@ -53,6 +56,13 @@
                         <td>{{student.account.first_name}}</td>
 
                         <td>{{student.account.last_name}}</td>
+                        
+                        {% for grade in student|get_grade:course %}
+                            <td>{{grade.prelim}}</td>
+                            <td>{{grade.midterm}}</td>
+                            <td>{{grade.finals}}</td>
+
+                        {% endfor %}
                     </tr>
                    {% endfor %}
               
