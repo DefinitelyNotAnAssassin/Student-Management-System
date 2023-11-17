@@ -37,7 +37,7 @@ Manage [Table]:
     TODO: 
         implement edit MODAL [DONE]
         implement views for information [DONE] 
-        implement for SCHEDULE 
+        implement for SCHEDULE [ONGOING]
 
 Add [Table]:
     TODO:
@@ -75,6 +75,36 @@ ADD Students COURSE [Priority]:
                 
 
 Design Decision: 
-    Filter Students vs Student Verification e.g. "Student is already enrolled in this course" 
+    Filter Students vs Student Verification e.g. "Student is already enrolled in this course" [on-going]
+    Course Edit Modal vs View Coures Page [both-implemented]
+
+
+Edge Cases:
+    confirm_password 
+    schedule_existing 
+    schedule_conflicting 
 
     
+
+=====================================================================================================================
+Student Interface
+=====================================================================================================================
+
+
+TODO: 
+    Dashboard Summary 
+    
+
+    Accounting 
+        - Balance Summary 
+        - Payment methods 
+        - Payment details/history 
+        
+    Schedule 
+        - Calendar based on the enrolled_course (clear the database when implementing to test the schedule's edge cases of existing or not existing //// is_conflicting)
+
+    Classroom
+        - implment soon 
+
+    Assessment 
+        - implement with the faculty 

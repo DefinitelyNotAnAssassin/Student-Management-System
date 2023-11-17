@@ -52,13 +52,16 @@ def manage_faculty(request):
 
 @login_required
 def manage_courses(request):
-    courses = Course.objects.all()
+    if request.method == 'GET':
+        return render(request, 'AdminInterface/manage_courses.html', )
     
-    items = {
-        'courses': courses
-    }
-   
-    return render(request, 'AdminInterface/manage_courses.html', context=items)
+    elif request.method == 'POST':
+        c = Course.objects.filter(semester = request.POST['semester'])
+        items = {
+            'courses': c,
+        }
+        print(c)
+        return render (request, 'AdminInterface/course_table.html', context = items)
 
 
 @login_required
@@ -68,8 +71,12 @@ def manage_records(request):
 
 @login_required
 def manage_schedule(request):
+    s = Schedule.objects.all() 
 
-    return render(request, 'AdminInterface/manage_schedule.html')
+    items = {
+        'schedules': s,
+    }
+    return render(request, 'AdminInterface/manage_schedule.html', context=items)
 
 
 @login_required

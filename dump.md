@@ -81,3 +81,25 @@
      </div>
   </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <td class="border-b px-2 dark:border-slate-600">{{course.course_schedule}}</td>
+                    <td class="border-b px-2 dark:border-slate-600">{{course.course_name}}</td>
+                    <td class="border-b px-2 dark:border-slate-600">{{course.program}}</td>
+                    <td class="border-b px-2 dark:border-slate-600">{{course.course_schedule}}</td>
+                    <td class="border-b px-2 dark:border-slate-600">{{course.faculty.account.first_name}} {{course.faculty.account.last_name}}</td>

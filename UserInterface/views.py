@@ -6,6 +6,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate, get_user_model, logout
 from django.db.models import Q
 
+from django.contrib.auth.hashers import make_password
+
 # battery included 
 User = get_user_model()
 
@@ -13,25 +15,7 @@ User = get_user_model()
 
 
 def index(request):
-    # Query the student 
-    q = Student.objects.get(student_number = "202200815")
-
-    # Query the course 
-    c = Course.objects.get(id=1)
-    # Query the Courses where the Student is enrolled 
-    print(q.courses.all())
-    # Query the Students under the Course 
-    print(c.students.all())
-
-    # Query the grades of the student 
-
-    g = get_object_or_404(Grade, student = q, course = c)
-        
-
-    # Query the grades of a Course 
-
-    print(c.grade_set.all())
-
+   
     return render(request, 'UserInterface/index.html')
 
 
@@ -40,10 +24,6 @@ def login_page(request):
     if request.method == 'GET':
         return render(request, 'UserInterface/login.html')
     elif request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        
-
         isUser = authenticate(username  = request.POST['username'], password = request.POST['password'])
         print(isUser)
 
@@ -51,15 +31,14 @@ def login_page(request):
             login(request, isUser)
             return redirect('index')
         else:
-            isUser = ProjectAdmin.objects.get(username = 'dx')
-            login(request, isUser, backend = 'Accounts.backends.AuthBackend')
+          
             return HttpResponse("...")
         
 
 
 @login_required
 def logout_page(request):
-    logout(request.user)
+    logout(request)
     return redirect('login page')
 
 
@@ -81,7 +60,7 @@ def grade_page(request):
 def schedule(request):
     schedules = request.user.student_set.first().courses.all()
     items = {
-        'schedules': schedules
+        'schedules': schedulse
     }
     return render(request, 'UserInterface/schedule.html', context=items)
 

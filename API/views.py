@@ -4,6 +4,7 @@ from Accounts.models import *
 from Registrar.models import *
 from django.views.decorators.csrf import csrf_exempt
 from API.forms import EditCourseForm
+from django.contrib.auth.hashers import make_password
 import json 
 # Create your views here.
 
@@ -11,10 +12,9 @@ def check_enrolled(student, course):
     enrolled = student.courses.all().contains(course)
     print(enrolled)
     if enrolled:
-        print("...")
+        return True
     else:
-        print("proceed")
-
+        return False
 def editable_student(request):
     if request.method == "GET":
         s = get_object_or_404(Student, id = request.GET.get('id'))
@@ -71,7 +71,7 @@ def add_student(request):
     elif request.method == 'POST':
         data = request.POST
         print("...")
-        add_account = ProjectAdmin(username = data['username'], password = data['password'], first_name = data['first_name'], last_name = data['last_name'])
+        add_account = ProjectAdmin(username = data['username'], password = make_password(data['password']), first_name = data['first_name'], last_name = data['last_name'])
         add_student = Student(account = add_account, student_number = data['student_number'], address = data['address'])
         print("...")
         add_account.save()
@@ -106,9 +106,9 @@ def edit_course(request):
         c.course_name = data['course_name']
         for student in data.getlist('students'):
             s = get_object_or_404(Student, student_number = student)
-            check_enrolled(s, c)
-            c.students.add(s)
-            print("Student Added __ ")
+            if not check_enrolled(s, c):
+                c.students.add(s)
+                print("Student Added")
         c.save()
         return redirect('manage courses')
     
@@ -122,6 +122,6 @@ def filter_students(request):
     if request.method == 'GET':
         id = request.GET['id']
         c = get_object_or_404(Course, identifier = id)
-        s = Student.objects.filter(student_number__icontains = request.GET['q']).exclude(student_number__in = c.students.all()).values_list('student_number', 'student_number')
+        s = Student.objects.filter(student_number__icontains = request.GET['q']).exclude(student_number__in = c.students.all().values_list('student_number')).values_list('student_number', 'student_number')
         
         return HttpResponse(json.dumps(dict(s)))

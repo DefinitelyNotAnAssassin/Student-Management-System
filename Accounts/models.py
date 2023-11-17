@@ -44,7 +44,7 @@ class ProjectAdmin(AbstractUser):
     is_accountant = models.BooleanField(default = False)
     identifier = models.UUIDField(default=uuid.uuid4)
     def save(self, *args, **kwargs):
-        self.set_password(self.password)
+        
         super(ProjectAdmin, self).save(*args, **kwargs)
 
   

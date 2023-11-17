@@ -18,8 +18,13 @@ class Course(models.Model):
     program = models.ForeignKey("Program", on_delete=models.CASCADE)
     faculty = models.ForeignKey("Accounts.Faculty", on_delete=models.CASCADE)
     identifier = models.UUIDField(null = True )
+    choices = [(1, '1st Semester'), (2, '2nd Semester')]
+    semester = models.IntegerField(choices=choices)
+
+    academic_years = [("2022-2023", "2022-2023"), ("2023-2024", "2023-2024"), ("2024-2025", "2024-2025"), ("2025-2026", "2025-2026"), ]
+    academic_year = models.CharField(choices = academic_years, max_length=16)
     def save(self, *args, **kwargs):
-        ''' On save, update uuid and ovoid clash with existing code '''
+            
         if not self.identifier:
             self.identifier = uuid.uuid4()
         return super(Course, self).save(*args, **kwargs)

@@ -20,44 +20,19 @@
             <div class="w-1/4 bg-gray-700 h-12"></div>
           </div>
 
+          <form hx-trigger = 'change' hx-target = '.course-block' hx-post = '/lmsadmin/manage_courses/'>
+            {% csrf_token %}
+            <select name="semester" style="width: 100%;" id="">
+              <option value="1" selected>1st Semester</option>
+              <option value="2">2nd Semester</option>
+            </select>
+
+
+          </form>
          
-<div class='overflow-x-auto'>
-    
-    <button class=" float-right bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"\
-          
-          
-    hx-get="/api/add_student" hx-target="body" hx-swap="beforeend">
-      Add Course
-    </button>
-         <table class="table-auto border-collapse w-full overflow-x-auto text-left">
-            <thead>
-                <tr>
-                    <th class="border-b dark:border-slate-600">Sched Code</th>
-                    <th class="border-b dark:border-slate-600">Course Name</th>
-                    <th class="border-b dark:border-slate-600">Program</th>
-                    <th class="border-b dark:border-slate-600">Schedule</th>
-                    <th class="border-b dark:border-slate-600">Faculty</th>
-                
-           
-                </tr>
-            </thead>
-            <tbody>
-                {% for course in courses %} 
-                <tr class="hover:ring-4 h-20">
-                    <td class="border-b px-2 dark:border-slate-600">{{course.course_schedule}}</td>
-                    <td class="border-b px-2 dark:border-slate-600">{{course.course_name}}</td>
-                    <td class="border-b px-2 dark:border-slate-600">{{course.program}}</td>
-                    <td class="border-b px-2 dark:border-slate-600">{{course.course_schedule}}</td>
-                    <td class="border-b px-2 dark:border-slate-600">{{course.faculty.account.first_name}} {{course.faculty.account.last_name}}</td>
-                    <td><button hx-get="/api/editable_course?id={{course.id}}" hx-target="body" hx-swap="beforeend">Edit</button></td>
-                </tr>
+        <div class="course-block">
 
-                {% endfor %}
-            </tbody>
-         </table>
-</div>
-
-
+        </div>
          
     </div>
   </div>

@@ -7,44 +7,90 @@
 
 
 
+
 <div class="p-4 sm:ml-64">
-    <div class="p-4 border-2 border-gray-200 h-screen border-dashed rounded-lg dark:border-gray-700 ">
+  <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
+     
+    <div class="grid grid-cols-3 gap-4 mb-4">
 
-        <div class="flex mb-1">
-            <div class="w-full bg-gray-500 h-12"></div>
-          </div>
+        <div class="flex items-center justify-center h-24 rounded bg-gray-50 dark:bg-gray-800">
+          <p class="text-2xl text-gray-400 dark:text-gray-500">
+            0
+          </p>
+        </div>
 
-          <div class="flex mb-4">
-            <div class="w-1/4 bg-gray-500 h-12"></div>
-            <div class="w-1/2 bg-gray-600 h-12"></div>
-            <div class="w-1/4 bg-gray-700 h-12"></div>
-          </div>
-
-          <div overflow-x-auto>
-            <div class="flex ">
-              <div class="w-1/2  mr-2 h-12">Course</div>
-              <div class="w-1/5 h-12">Prelim</div>
-              <div class="w-1/5  h-12">Midterm</div>
-              <div class="w-1/5  h-12">Finals</div>
-              
-            
-            </div>
-  
-            {% for grade in grades %}
-  
-            <div class="flex ">
-              <div class="w-1/2 mr-2 h-12">{{grade.course.course_name}}</div>
-              <div class="w-1/5  h-12">{{grade.prelim}}</div>
-              <div class="w-1/5 h-12">{{grade.midterm}}</div>
-              <div class="w-1/5  h-12">{{grade.finals}}</div>
-            
-            </div>
-  
-            {% endfor %}
-         
-          </div>
-         
+        
+        <div class="flex items-center justify-center h-24 rounded bg-gray-50 dark:bg-gray-800">
+           <p class="text-2xl text-gray-400 dark:text-gray-500">
+            1
+          </p>
           
-    </div>
+        </div>
+        <div class="flex items-center justify-center h-24 rounded bg-gray-50 dark:bg-gray-800">
+           <p class="text-2xl text-gray-400 dark:text-gray-500">
+            2  
+           </p>
+        </div>
+     </div>
+
+     
+     <div class="flex items-center justify-center h-48 mb-4 rounded bg-gray-50 dark:bg-gray-800">
+        <p class="text-2xl text-gray-400 dark:text-gray-500">
+          This is the dashboard page
+        </p>
+     </div>
+     <div class="grid grid-cols-2 gap-4 mb-4">
+        <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
+           <p class="text-2xl text-gray-400 dark:text-gray-500">
+           4   
+           </p>
+        </div>
+        <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
+           <p class="text-2xl text-gray-400 dark:text-gray-500">
+            5  
+           </p>
+        </div>
+        <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
+           <p class="text-2xl text-gray-400 dark:text-gray-500">
+             6 
+           </p>
+        </div>
+        <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
+           <p class="text-2xl text-gray-400 dark:text-gray-500">
+              7
+           </p>
+        </div>
+     </div>
+     <div class="flex items-center justify-center h-48 mb-4 rounded bg-gray-50 dark:bg-gray-800">
+        <p class="text-2xl text-gray-400 dark:text-gray-500">
+          8
+        </p>
+     </div>
+     <div class="grid grid-cols-2 gap-4">
+        <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
+           <p class="text-2xl text-gray-400 dark:text-gray-500">
+           9   
+           </p>
+        </div>
+        <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
+           <p class="text-2xl text-gray-400 dark:text-gray-500">
+            10  
+           </p>
+        </div>
+        <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
+           <p class="text-2xl text-gray-400 dark:text-gray-500">
+             11 
+           </p>
+        </div>
+        <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
+           <p class="text-2xl text-gray-400 dark:text-gray-500">
+              12
+           </p>
+        </div>
+     </div>
   </div>
+</div>
+
+
+
 {% endblock content %}
